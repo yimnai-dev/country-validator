@@ -10,9 +10,10 @@ import {
     getCountriesOfContinent,
     getAllCountries,
     sortCountries,
+    getCountryStates,
  } from "..";
 
- import { countries } from "../utils/data";
+ import { STATES, countries } from "../utils/data";
 import { Country } from "../utils/types";
 
  const africanCountries = countries.filter((country: Country) => country.continent === 'AFRICA')
@@ -22,6 +23,7 @@ import { Country } from "../utils/types";
 
  test('Cameroon should return a truthy value and Camersn should be falsy', () => {
     expect(verifyCountryExistence('Cameroon')).toBeTruthy()
+    //@ts-expect-error Passing wrong params should fail
     expect(verifyCountryExistence('Camersn')).toBeFalsy()
  })
 
@@ -61,6 +63,7 @@ import { Country } from "../utils/types";
  })
 
  test('{name: cameroon}, {code: CM}, {dial_code: +237} should return AFRICA', () => {
+   //@ts-expect-error Passing wrong params should fail
     expect(getContinentOfCountry({name: 'cameroon'})).toMatch('AFRICA')
     expect(getContinentOfCountry({code: 'CM'})).toMatch('AFRICA')
     expect(getContinentOfCountry({dial_code: '+237'})).toMatch('AFRICA')
@@ -79,6 +82,16 @@ import { Country } from "../utils/types";
  test('Depending on the params passed, there should be a sorted list of countries received', () => {
     expect(sortCountries({data: africanCountries})).toEqual(africanCountries.sort(compareFunc))
     expect(sortCountries({data: africanCountries, limit: 5})).toEqual(africanCountries.sort(compareFunc).slice(0, 5))
+    //@ts-expect-error Passing wrong params should fail
     expect(sortCountries({limit: 5})).toEqual(countries.sort(compareFunc).slice(0, 5))
+    //@ts-expect-error Passing wrong params should fail
     expect(sortCountries()).toEqual(countries.sort(compareFunc))
  })
+
+ test('Get states of passed country', () => {
+   expect(getCountryStates({name: 'Cameroon'})).toEqual(STATES['CAMEROON'])
+   expect(getCountryStates({dial_code: '+237'})).toEqual(STATES['CAMEROON'])
+   expect(getCountryStates({code: 'CM'})).toEqual(STATES['CAMEROON'])
+   //@ts-expect-error Passing a wrong country code | name | dialcode should fail
+   expect(getCountryStates({code: 'CMs'})).toEqual(undefined)
+})
