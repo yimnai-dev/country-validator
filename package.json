@@ -1,6 +1,6 @@
 {
-  "name": "country-validator",
-  "version": "1.0.21",
+  "name": "@yimnai-dev/country-validator",
+  "version": "1.0.3",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",

@@ -1,65 +1,71 @@
 import { capitalize, compareFunc } from './utils/compare.util';
-import { countries } from './utils/data';
-import { Continent, Country } from "./utils/types"
+import { countries, STATES } from './utils/data';
+import { Continent, Country, CountryName, CountryCode, CountryDialCode, NameOrDialCode, NameOrCountryCode, CodeOrDialCode, NameOrCodeOrDialCode, NATION_STATES, STATE } from "./utils/types"
 
-export const verifyCountryExistence = (country: string) => {
+export const verifyCountryExistence = (country: CountryName) => {
     const searchedCountry = countries.find((place: Country) => place.name === capitalize(country));
-    return searchedCountry ? true : false;
+    return Boolean(searchedCountry);
 }
 
-export const getCountryCode = (countryObj: Partial<Pick<Country, 'name' | 'dial_code'>>) => {
-    const result = countryObj.name ? countries.find((country: Country) => country?.name === capitalize(countryObj?.name)) :
-    (countryObj.dial_code) && countries.find((country: Country) => country.dial_code === countryObj?.dial_code)
-    return result ? result.code : {};
+export const getCountryCode = (countryObj: NameOrDialCode): CountryCode | undefined => {
+    if(countryObj.name) return countries.find((country: Country) => country.name === capitalize(countryObj.name))?.code;
+    if(countryObj.dial_code) return countries.find((country: Country) => country.dial_code === countryObj.dial_code)?.code;
+    return undefined;
 }
 
-export const getCountryDialCode = (countryObj: Partial<Pick<Country, 'code' | 'name'>>) => {
-    const result = countryObj.name ? countries.find((country: Country) => country.name === capitalize(countryObj.name)): 
-    (countryObj.code) && countries.find((country: Country) => country.code === capitalize(countryObj.code))
-    return result ? result.dial_code : {};
-
+export const getCountryDialCode = (countryObj: NameOrCountryCode): CountryDialCode | undefined => {
+    if(countryObj.name) return countries.find((country: Country) => country.name === capitalize(countryObj.name))?.dial_code;
+    if(countryObj.code) return countries.find((country: Country) => country.code === capitalize(countryObj.code))?.dial_code;
+    return undefined;
 }
 
-export const getCountryName = (countryObj: Partial<Pick<Country, 'code' | 'dial_code'>>) => {
-    const result = countryObj.code ? countries.find((country: Country) => country.code === capitalize(countryObj?.code)) :
-    (countryObj.dial_code) && countries.find((country: Country) => country?.dial_code === countryObj?.dial_code)
-    return result ? result.name : {};
+export const getCountryName = (countryObj: CodeOrDialCode): CountryName | undefined => {
+    if(countryObj.code) return countries.find((country: Country) => country.code === capitalize(countryObj.code))?.name;
+    if(countryObj.dial_code) return countries.find((country: Country) => country.dial_code === countryObj.dial_code)?.name;
+    return undefined;
 }
 
-export const getCountryInfo = (countryObj: Partial<Omit<Country, 'continent'>>) => {
-    const result = countryObj.name ? countries.find((country: Country) => country?.name === capitalize(countryObj?.name)): 
-    countryObj.dial_code ? countries.find((country: Country) => country?.code === capitalize(countryObj?.code)) : 
-    countryObj.code && countries.find((country: Country) => country?.dial_code === countryObj?.dial_code)
-    return result ? result : {};
+export const getCountryInfo = (countryObj: NameOrCodeOrDialCode): Country | undefined => {
+    if(countryObj.name) return countries.find((country: Country) => country.name === capitalize(countryObj.name));
+    if(countryObj.code) return countries.find((country: Country) => country.code === capitalize(countryObj.code));
+    if(countryObj.dial_code) return countries.find((country: Country) => country.dial_code === countryObj.dial_code);
+    return undefined;
 }
 
-export const verifyIfCountryInContinent = (countryObj: Partial<Pick<Country, 'name' | 'dial_code' | 'code'>>, continent: Continent) => {
-    const result = countryObj.name ? countries.find((country: Country) => country?.name === capitalize(countryObj?.name) && country.continent === continent) :
-    countryObj.code ? countries.find((country: Country) => country?.code === capitalize(countryObj?.code) && country.continent === continent.toUpperCase()) :
-    countryObj.dial_code && countries.find((country: Country) => country.dial_code === countryObj.dial_code && country.continent === continent.toUpperCase()) 
-    return result ? result : {};
+export const verifyIfCountryInContinent = (countryObj: NameOrCodeOrDialCode, continent: Continent): boolean => {
+    if(countryObj.name) return countries.some((country: Country) => country.name === capitalize(countryObj.name) && country.continent === continent);
+    if(countryObj.code) return countries.some((country: Country) => country.code === capitalize(countryObj.code) && country.continent === continent);
+    if(countryObj.dial_code) return countries.some((country: Country) => country.dial_code === countryObj.dial_code && country.continent === continent);
+    return false;
 }
 
-export const getContinentOfCountry = (countryObj: Partial<Pick<Country, 'name' | 'dial_code' | 'code'>>) => {
-    const country = countryObj.name ? countries.find((country: Country) => country?.name === capitalize(countryObj?.name)) :
-    (countryObj.code) ? countries.find((country: Country) => country?.code === capitalize(countryObj?.code)) :
-    (countryObj.dial_code) && countries.find((country: Country) => country?.dial_code === countryObj?.dial_code)
-    return country ? country.continent : {};
+export const getContinentOfCountry = (countryObj: NameOrCodeOrDialCode): Continent | undefined => {
+    if(countryObj.name) return countries.find((country: Country) => country.name === capitalize(countryObj.name))?.continent;
+    if(countryObj.code) return countries.find((country: Country) => country.code === capitalize(countryObj.code))?.continent;
+    if(countryObj.dial_code) return countries.find((country: Country) => country.dial_code === countryObj.dial_code)?.continent;
+    return undefined;
 }
 
-export const getCountriesOfContinent = (continent: Continent, limit?: number) => {
+export const getCountriesOfContinent = (continent: Continent, limit?: number): Country[] => {
     const requestedCountries = countries.filter((country: Country) => country.continent === continent.toUpperCase())
-    return requestedCountries ?
-        (limit ? requestedCountries.slice(0, limit) : requestedCountries) : {};
+    return limit ? requestedCountries.slice(0, limit) : requestedCountries
 }
 
-export const getAllCountries = (limit?: number) => {
-    const requestedCountries = limit ? countries.slice(0, limit) : countries
-    return requestedCountries ? requestedCountries : {};
+export const getAllCountries = (limit?: number): Country[] => {
+    const requestedCountries: Country[] = (limit ? countries.slice(0, limit) : countries) as Country[]
+    return requestedCountries
 }
 
-export const sortCountries = (sortObj?: {data?: Country[], limit?: number}) => {
-    const sortedCountries = sortObj?.data ? sortObj.data?.sort(compareFunc) : countries.sort(compareFunc)
+export const sortCountries = (sortObj?: {data?: Country[], limit?: number}): Country[] => {
+    const clonedCountries = [...countries]
+    const sortedCountries = sortObj?.data ? sortObj.data?.sort(compareFunc) : clonedCountries.sort(compareFunc)
     const result = !sortObj?.limit ? sortedCountries : sortedCountries.slice(0, sortObj.limit)
-    return result ? result : {}
+    return result
+}
+
+export const getCountryStates = (countryObj: NameOrCodeOrDialCode): NATION_STATES | undefined => {
+    const name = countryObj.name ?? countries.find(country => country.code === countryObj.code)?.name ?? countries.find(country => country.dial_code === countryObj.dial_code)?.name
+    if(!name)return undefined
+    const searchBy = name.toUpperCase() as STATE
+    return STATES[searchBy]
 }

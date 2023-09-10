@@ -1,18 +1,16 @@
-# Documentation for country-validator
-
 country-validator is a javascript library that helps in working with basic data about world countries such as names, country code, dial code and continent.
 
 
 # installation
-`npm install nation-validator --save`
+`npm install @yimnai-dev/country-validator --save`
 **OR**
-`pnpm install nation-validator`
+`pnpm install @yimnai-dev/country-validator`
 **OR**
-`yarn install nation-validator`
+`yarn install@yimnai-dev/country-validator`
 
 
 # GITHUB
-- [nation-validator](https://www.github.com/Nerus-Zaumu/nation-validator)
+- [country-validator](https://www.github.com/yimnai-dev/nation-validator)
 
 
 ## API Reference
@@ -144,6 +142,20 @@ Passing the name of the country will return a boolean indicating whether or not 
 | :-------- | :------- | :-------------------------------- |
 | `country`      | `string` | **Required** |
 
+#### Get list of states in country
+
+```function
+   getCountryStates(countryObj: NameOrCodeOrDialCode)
+```
+
+Passing any of these parameters will return an array of all the states in the country. Passing none of them will return undefined.
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Optional** |
+| `code`      | `string` | **Optional** |
+| `dial_code`      | `string` | **Optional** |
+
+
 **Make sure to enter the full name of a country when checking with a name parameter. Also, empty objects will be returned if nothing could be found.**
 
 ## Appendix
@@ -152,7 +164,7 @@ This library was put together by Yimnai Nerus. If you want to contribute, you ca
 
 ## Authors
 
-- [@Nerus-Zaumu](https://www.github.com/Nerus-Zaumu)
+- [@yimnai-dev](https://www.github.com/yimnai-dev)
 
 ## 🚀 About Me
-I'm a fullstack developer with Angular and Nestjs. Currently pursuing a degree in Software Engineering. Passionate about building tools with web tools and more recently, contributing to OSS. This is my first library and I'm excited about the journey and what the future has in store.
+Web developer and software engineer
