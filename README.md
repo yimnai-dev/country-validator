@@ -1,4 +1,4 @@
-country-validator is a javascript library that helps in working with basic data about world countries such as names, country code, dial code and continent.
+@yimnai-dev/country-validator is a javascript library that helps in working with basic data about world countries such as names, country code, dial code and continent.
 
 
 # installation
