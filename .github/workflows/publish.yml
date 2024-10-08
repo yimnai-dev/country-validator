@@ -5,7 +5,7 @@ name: Publish Country Validator
 on: 
   push: 
     branches: 
-      - master
+      - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:
