@@ -6,7 +6,6 @@
   "module": "lib/index.mjs",
   "scripts": {
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
-    "lint": "tsc",
     "test": "jest",
     "clean": "rm -rf ./lib",
     "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
