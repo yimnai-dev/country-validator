@@ -14,7 +14,9 @@
     "semantic-release": "semantic-release"
   },
   "release": {
-    "branches": ["main"]
+    "branches": [
+      "main"
+    ]
   },
   "publishConfig": {
     "access": "public"
@@ -23,8 +25,10 @@
   "author": "Yimnai Nerus",
   "license": "MIT",
   "devDependencies": {
+    "@babel/preset-env": "^7.25.7",
     "@changesets/cli": "^2.26.2",
     "@types/jest": "^29.4.0",
+    "babel-jest": "^29.7.0",
     "jest": "^29.4.2",
     "semantic-release": "^24.1.2",
     "ts-jest": "^29.0.5",
