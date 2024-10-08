@@ -1,4 +1,5 @@
-import { Country } from './../../lib/types.d';
+import { Country } from "./types"
+
 export const compareFunc = (a: Country, b: Country) => {
     if(a.name < b.name) {
         return -1

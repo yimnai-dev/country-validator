@@ -1,4 +1,4 @@
-name: CI
+name: Test And Build Country Validator
 on: 
   push:
     branches: 
@@ -7,9 +7,13 @@ on:
 jobs: 
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x, 18.x, 20.x]
     steps: 
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
+      - name: Use Node.js ${{ matrix.node-version }}
         with:
           version: 7
       - uses: actions/setup-node@v3
@@ -19,4 +23,6 @@ jobs:
 
       - run: npm install -g pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run lint && pnpm run test && pnpm run build
+      - run: pnpm run lint
+      - run: pnpm run test
+      - run: pnpm run build

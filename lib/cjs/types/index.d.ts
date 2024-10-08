@@ -13,3 +13,4 @@ export declare const sortCountries: (sortObj?: {
     limit?: number;
 }) => Country[];
 export declare const getCountryStates: (countryObj: NameOrCodeOrDialCode) => NATION_STATES | undefined;
+//# sourceMappingURL=index.d.ts.map
