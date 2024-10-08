@@ -11,10 +11,11 @@ import {
     getAllCountries,
     sortCountries,
     getCountryStates,
- } from "..";
+ } from "../index";
 
  import { STATES, countries } from "../utils/data";
 import { Country } from "../utils/types";
+import { expect, test } from 'vitest'
 
  const africanCountries = countries.filter((country: Country) => country.continent === 'AFRICA')
  const limitedAfricanCountries = africanCountries.slice(0, 5)
