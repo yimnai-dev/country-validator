@@ -53,6 +53,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yimnai-dev/country-validator.git"
+    "url": "git+https://github.com/yimnai-dev/country-validator.git"
   }
 }
