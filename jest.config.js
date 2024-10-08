@@ -6,6 +6,6 @@ module.exports = {
     "^.+\\.tsx?$": "ts-jest", // Transform TypeScript files using ts-jest
     "^.+\\.js$": "babel-jest" // Transform ESM JavaScript files using babel-jest
   },
-  extensionsToTreatAsEsm: [".ts", ".tsx", ".js"], // Treat .js files as ESM
+  extensionsToTreatAsEsm: [".ts", ".tsx"], // Treat .js files as ESM
   transformIgnorePatterns: ["/node_modules/"], // Ignore transformation for node_modules unless necessary
 };
