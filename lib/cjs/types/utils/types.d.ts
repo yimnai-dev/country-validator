@@ -28,3 +28,4 @@ export type NameOrCodeOrDialCode = Partial<{
 }>;
 export type NATION_STATES = typeof STATES[keyof typeof STATES];
 export type STATE = keyof typeof STATES;
+//# sourceMappingURL=types.d.ts.map

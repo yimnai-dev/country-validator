@@ -1448,3 +1448,4 @@ export declare const STATES: {
     readonly ZAMBIA: readonly [];
     readonly ZIMBABWE: readonly ["Harare", "Bulawayo", "Manicaland", "Mashonaland Central", "Mashonaland East", "Mashonaland West", "Masvingo", "Matabeleland North", "Matabeleland South", "Midlands"];
 };
+//# sourceMappingURL=data.d.ts.map
