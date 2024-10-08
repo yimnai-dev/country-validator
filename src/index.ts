@@ -1,6 +1,6 @@
-import { capitalize, compareFunc } from './utils/compare.util';
-import { countries, STATES } from './utils/data';
-import { Continent, Country, CountryName, CountryCode, CountryDialCode, NameOrDialCode, NameOrCountryCode, CodeOrDialCode, NameOrCodeOrDialCode, NATION_STATES, STATE } from "./utils/types"
+import { capitalize, compareFunc } from './utils/compare.util.js';
+import { countries, STATES } from './utils/data.js';
+import type { Continent, Country, CountryName, CountryCode, CountryDialCode, NameOrDialCode, NameOrCountryCode, CodeOrDialCode, NameOrCodeOrDialCode, NATION_STATES, STATE } from "./utils/types.js"
 
 export const verifyCountryExistence = (country: CountryName) => {
     const searchedCountry = countries.find((place: Country) => place.name === capitalize(country));

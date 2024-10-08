@@ -1,4 +1,4 @@
-import { Continent, Country, CountryName, CountryCode, CountryDialCode, NameOrDialCode, NameOrCountryCode, CodeOrDialCode, NameOrCodeOrDialCode, NATION_STATES } from "./utils/types";
+import type { Continent, Country, CountryName, CountryCode, CountryDialCode, NameOrDialCode, NameOrCountryCode, CodeOrDialCode, NameOrCodeOrDialCode, NATION_STATES } from "./utils/types.js";
 export declare const verifyCountryExistence: (country: CountryName) => boolean;
 export declare const getCountryCode: (countryObj: NameOrDialCode) => CountryCode | undefined;
 export declare const getCountryDialCode: (countryObj: NameOrCountryCode) => CountryDialCode | undefined;

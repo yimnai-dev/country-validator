@@ -1,4 +1,4 @@
-import { compareFunc } from './../utils/compare.util';
+import { compareFunc } from './../utils/compare.util.js';
 import { 
     verifyCountryExistence,
     getCountryCode,
@@ -11,10 +11,10 @@ import {
     getAllCountries,
     sortCountries,
     getCountryStates,
- } from "../index";
+ } from "../index.js";
 
- import { STATES, countries } from "../utils/data";
-import { Country } from "../utils/types";
+ import { STATES, countries } from "../utils/data.js";
+import { type Country } from "../utils/types.js";
 import { expect, test } from 'vitest'
 
  const africanCountries = countries.filter((country: Country) => country.continent === 'AFRICA')

@@ -1,4 +1,4 @@
-import { countries, STATES } from './data';
+import { countries, STATES } from './data.js';
 export type Country = {
     name: string;
     dial_code: string;
