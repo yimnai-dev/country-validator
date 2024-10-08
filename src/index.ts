@@ -17,7 +17,7 @@ export const getCountryDialCode = (countryObj: NameOrCountryCode): CountryDialCo
     if(countryObj.name) return countries.find((country: Country) => country.name === capitalize(countryObj.name))?.dial_code;
     if(countryObj.code) return countries.find((country: Country) => country.code === capitalize(countryObj.code))?.dial_code;
     return undefined;
-}
+} 
 
 export const getCountryName = (countryObj: CodeOrDialCode): CountryName | undefined => {
     if(countryObj.code) return countries.find((country: Country) => country.code === capitalize(countryObj.code))?.name;
